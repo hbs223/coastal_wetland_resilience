@@ -1,0 +1,30 @@
+# Research data and generated analysis outputs stay outside the code release.
+/data/**
+!/data/**/
+!/data/**/.gitkeep
+/outputs/**
+!/outputs/**/
+!/outputs/**/.gitkeep
+
+# Python, local environments, editors, and operating-system files.
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.venv/
+venv/
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+.env
+
+# Prevent accidental additions of rasters, training arrays, or binary models.
+*.tif
+*.tiff
+*.npy
+*.npz
+*.pkl
+*.joblib
+*.ubj
+*.log

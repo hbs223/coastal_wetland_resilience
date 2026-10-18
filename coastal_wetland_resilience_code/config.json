@@ -1,0 +1,53 @@
+{
+  "years": [2002, 2006, 2010, 2014, 2018, 2022],
+  "indicators": {
+    "patch_density": "data/inputs/patch_density/pd_{year}.tif",
+    "cohesion": "data/inputs/cohesion/cohesion_{year}.tif",
+    "vegetation_resilience": "data/inputs/vegetation_resilience/vfr_{year}.tif",
+    "hydrological_resilience": "data/inputs/hydrological_resilience/hr_{year}.tif"
+  },
+  "paths": {
+    "habitat_quality": "data/inputs/habitat_quality/hq_{year}.tif",
+    "wetland_mask": "data/inputs/wetland_mask.tif",
+    "wri": "outputs/wri/wri_{year}.tif",
+    "mismatch": "outputs/mismatch/mismatch_{year}.tif",
+    "training_data": "outputs/training_data",
+    "models": "outputs/models"
+  },
+  "classification": {
+    "threshold_mode": "pooled"
+  },
+  "predictors": [
+    {"name": "actual_evapotranspiration", "path": "data/inputs/predictors/aet_{year}.tif", "scale": 0.1},
+    {"name": "distance_to_coast", "path": "data/inputs/predictors/coast_distance_{year}.tif", "scale": 1.0},
+    {"name": "climatic_water_deficit", "path": "data/inputs/predictors/water_deficit_{year}.tif", "scale": 0.1},
+    {"name": "elevation", "path": "data/inputs/predictors/elevation_{year}.tif", "scale": 1.0},
+    {"name": "mean_annual_precipitation", "path": "data/inputs/predictors/precipitation_{year}.tif", "scale": 1.0},
+    {"name": "mean_annual_temperature", "path": "data/inputs/predictors/temperature_{year}.tif", "scale": 1.0},
+    {"name": "population", "path": "data/inputs/predictors/population_{year}.tif", "scale": 1.0},
+    {"name": "built_up_land_proportion", "path": "data/inputs/predictors/built_up_{year}.tif", "scale": 1.0},
+    {"name": "cropland_proportion", "path": "data/inputs/predictors/cropland_{year}.tif", "scale": 1.0},
+    {"name": "aquaculture_proportion", "path": "data/inputs/predictors/aquaculture_{year}.tif", "scale": 1.0}
+  ],
+  "sampling": {
+    "block_size_pixels": 20,
+    "train_fraction": 0.8,
+    "random_seed": 42
+  },
+  "model": {
+    "n_iter": 50,
+    "n_splits": 5,
+    "random_seed": 42,
+    "n_jobs": -1,
+    "probability_threshold": 0.5,
+    "param_grid": {
+      "n_estimators": [300, 500, 800, 1000],
+      "max_depth": [3, 5, 7, 9],
+      "learning_rate": [0.01, 0.03, 0.05, 0.1],
+      "subsample": [0.7, 0.8, 1.0],
+      "colsample_bytree": [0.7, 0.8, 1.0],
+      "min_child_weight": [1, 5, 10],
+      "gamma": [0, 0.1, 0.5]
+    }
+  }
+}

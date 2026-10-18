@@ -1,0 +1,9 @@
+name: coastal-wetland-resilience
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - numpy>=1.26,<3
+  - scikit-learn>=1.7,<2
+  - xgboost>=3.2,<4
+  - gdal>=3.4,<4
